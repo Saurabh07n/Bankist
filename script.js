@@ -47,11 +47,17 @@ const labelTimer = document.querySelector('.timer');
 const containerApp = document.querySelector('.app');
 const containerMovements = document.querySelector('.movements');
 
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const tableHeader = document.querySelector('.table-header');
+
+const btnCloseModal = document.querySelector('.close-modal');
 const btnLogin = document.querySelector('.login__btn');
 const btnTransfer = document.querySelector('.form__btn--transfer');
 const btnLoan = document.querySelector('.form__btn--loan');
 const btnClose = document.querySelector('.form__btn--close');
 const btnSort = document.querySelector('.btn--sort');
+const btnUsageGuide = document.querySelector('.usage-guide');
 
 const inputLoginUsername = document.querySelector('.login__input--user');
 const inputLoginPin = document.querySelector('.login__input--pin');
@@ -60,6 +66,25 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
+
+// Display user accounts in usage guide
+const displayUsageGuide = () => {
+  let html = ``;
+  
+  accounts.forEach((acc) => {
+    const username = acc.owner.toLowerCase().split(' ').map(user => user[0]).join('');
+    html += `
+        <tr>
+          <td>${acc.owner}</td>
+          <td>'${username}'</td>
+          <td>' ${acc.pin} '</td>
+        </tr>
+    `;
+    console.log(12);
+  });
+  tableHeader.insertAdjacentHTML('afterend',html);
+};
+displayUsageGuide();
 
 // Display transactions //
 const displayMovements = function (movements, sort = false) {
@@ -132,7 +157,22 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const closeModal = () => {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+}
+
 let currentAccount;
+
+// Implementing Usage Guide
+btnUsageGuide.addEventListener('click', function (e) {
+  e.preventDefault();
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+});
+
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
 
 // Implementing Login
 btnLogin.addEventListener('click', function (e) {

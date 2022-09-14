@@ -30,6 +30,30 @@ nav {
   padding: 0 2rem;
 }
 
+nav .nav-left {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+nav .nav-mid {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.movements__type.usage-guide {
+  width: 30%;
+  margin-top: 6px;
+  padding: 0 4%;
+  cursor: pointer;
+}
+
 .welcome {
   font-size: 1.9rem;
   font-weight: 500;
@@ -41,6 +65,8 @@ nav {
 
 .login {
   display: flex;
+  width: 33%;
+  justify-content: right;
 }
 
 .login__input {
@@ -81,6 +107,53 @@ nav {
 .btn--sort:focus {
   outline: none;
   color: #777;
+}
+
+/* Modal */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+
+  background-color: white;
+  padding: 6rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
+  font-size: 5rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+
+.modal table {
+  margin-top: 12px;
+}
+
+.modal table td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
 }
 
 /* MAIN */
@@ -160,12 +233,6 @@ nav {
 
 .movements__type--withdrawal {
   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
-}
-
-.usage-guide {
-  width: 50%;
-  margin-top: 6px;
-  margin-left: 25%;
 }
 
 .movements__value {
@@ -292,10 +359,23 @@ h2 {
 }
 
 .logout-timer {
+  display: flex;
+  width: 400px;
   padding: 0 0.3rem;
   margin-top: 1.9rem;
-  text-align: right;
+  margin-bottom: 1.2rem;
   font-size: 1.25rem;
+  justify-content: end;
+  align-items: center;
+}
+
+.logout-timer img {
+  width: 20px;
+  margin-left: 12px;
+}
+
+.logout-timer img:hover + .hidden.logout {
+  display: block;
 }
 
 .timer {
