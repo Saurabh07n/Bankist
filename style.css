@@ -162,6 +162,12 @@ nav {
   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
 }
 
+.usage-guide {
+  width: 50%;
+  margin-top: 6px;
+  margin-left: 25%;
+}
+
 .movements__value {
   font-size: 1.7rem;
   margin-left: auto;
