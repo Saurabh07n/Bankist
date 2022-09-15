@@ -72,6 +72,12 @@ window.addEventListener('beforeunload',() => {
   window.scrollTo(0,0);
 });
 
+window.onload = () => {
+  let count = localStorage.getItem('timerCount');
+  count = Number(count);
+  if(count) timer();
+};
+
 // Display user accounts in usage guide
 const displayUsageGuide = () => {
   let html = ``;
@@ -188,26 +194,32 @@ const closeModal = () => {
 };
 
 const timer = () => {
-  let count = 300;
+  let count = Number(localStorage.getItem('timerCount'));
 
   const formatNum = (num) => {
     num = num.toString();
     if(num.length === 1) return `0${num}`;
     else return `${num}`
   };
-  
-  // WORK IN PROGRESS
+
   const test = () => {
     if(count) setTimeout(()=>{
     count--;
-    console.log(count);
-    const text = `${formatNum(count/60)}:${formatNum(count%60)}`;
-    labelTimer.insertAdjacentText('afterbegin',text);
     test();
     },1000);
-    else return;
+    else logoutUser();
+    const text = `${formatNum(parseInt(count/60))}:${formatNum(count%60)}`;
+    labelTimer.textContent = text;
+    localStorage.setItem('timerCount',`${count}`)
   }
   test();
+  
+};
+
+const logoutUser = () => {
+  localStorage.clear();
+  location.reload();
+  window.scrollTo(0,0);
 };
 
 let currentAccount;
@@ -234,6 +246,7 @@ btnLogin.addEventListener('click', function (e) {
     postLogin(currentAccount);
     updateUI(currentAccount);
     localStorage.setItem('account',JSON.stringify(currentAccount));
+    localStorage.setItem('timerCount', '300');
     timer();
   }
 });
@@ -308,7 +321,5 @@ btnSort.addEventListener('click', function (e) {
 
 // logout
 btnLogout.addEventListener('click',() => {
-  localStorage.clear();
-  location.reload();
-  window.scrollTo(0,0);
+  logoutUser();
 });
