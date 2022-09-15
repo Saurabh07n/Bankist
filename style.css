@@ -148,12 +148,19 @@ nav .nav-mid {
 
 .modal table {
   margin-top: 12px;
+  width: 100%;
 }
 
 .modal table td, th {
   border: 1px solid #dddddd;
   text-align: center;
   padding: 8px;
+}
+
+.modal table tr td:first-of-type, .modal table tr th:first-of-type {
+  text-align: left;
+  width: 40%;
+  padding-left: 16px;
 }
 
 /* MAIN */
@@ -360,22 +367,30 @@ h2 {
 
 .logout-timer {
   display: flex;
+  position: relative;
   width: 400px;
   padding: 0 0.3rem;
   margin-top: 1.9rem;
   margin-bottom: 1.2rem;
   font-size: 1.25rem;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
 }
 
 .logout-timer img {
-  width: 20px;
-  margin-left: 12px;
+  width: 24px;
+  margin: 0 12px 0 12px;
 }
 
 .logout-timer img:hover + .hidden.logout {
   display: block;
+  position: absolute;
+  right: 4%;
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  color: white;
+  background-image: linear-gradient(to top left, #e52a5a, #ff585f);
 }
 
 .timer {
